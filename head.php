@@ -6,4 +6,5 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./style.css">
     <title>Document</title>
+    <script src="./script.js"></script>
 </head>
