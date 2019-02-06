@@ -1,14 +1,38 @@
+<?php 
+if(!isset($_COOKIE["user"]) ){
+$array = array(
+    "firstname" => $_POST["firstname"],
+    "lastname" => $_POST["lastname"], 
+    "personnummer" => $_POST["personnummer"]);
 
+setcookie("user", serialize($array), time() +  (86400 * 30), "/");
+
+
+}
+
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
 <?php
- class Person {
-     protected $firstname;
-     protected $lastname;
-     protected $personnummer;
-     public function __construct($firstname, $lastname, $personnummer)
-     {
-         $this->firstname = $firstname;
-         $this->lastname = $lastname;
-         $this->personnummer = $personnummer;
+if(isset($_COOKIE["user"])){
+    $var = unserialize($_COOKIE["user"]);
+class Person {
+        protected $firstname;
+        protected $lastname;
+        protected $personnummer;
+        public function __construct($firstname, $lastname, $personnummer)
+        {
+            $this->firstname = $firstname;
+            $this->lastname = $lastname;
+            $this->personnummer = $personnummer;
         }
         
     public function countHoroscope(){
@@ -31,27 +55,27 @@
 
             if($day <= $endDay && $month == $endMonth) {
 
-                echo $horoscope->name;
+                echo "<h1>".$horoscope->name."</h1>";
             }
         }
     
 
     }
-  /*   public function getDetails(){
+    public function getDetails(){
         echo $this->firstname . " ". $this->lastname . " ". $this->personnummer;
     }
- */
- }
 
-$visiter = new Person($_POST['firstname'], $_POST['lastname'], $_POST['personnummer']);
+    }
+
+$visiter = new Person($var["firstname"], $var['lastname'], $var['personnummer']);
 //echo $visiter->getDetails();
 
 echo $visiter->countHoroscope();
 
+}
 
-
-
-
-?>
+?>   
+</body>
+</html>
 
 
