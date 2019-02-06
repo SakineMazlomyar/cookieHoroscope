@@ -24,6 +24,7 @@ setcookie("user", serialize($array), time() +  (86400 * 30), "/");
 <?php
 if(isset($_COOKIE["user"])){
     $var = unserialize($_COOKIE["user"]);
+    
 class Person {
         protected $firstname;
         protected $lastname;
